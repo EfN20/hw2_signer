@@ -17,6 +17,7 @@ func ExecutePipeline(jobs ...job) {
 		go work(job, inCh, outCh, wg)
 		inCh = outCh
 	}
+	fmt.Println("[ ExecutePipeline ] before wait")
 	wg.Wait()
 }
 
@@ -54,6 +55,7 @@ func SingleHash(inCh, outCh chan interface{}) {
 			wg.Done()
 		}(inputData)
 	}
+	fmt.Println("[ SingleHash ] before wait")
 	wg.Wait()
 }
 
@@ -87,6 +89,7 @@ func MultiHash(inCh, outCh chan interface{}) {
 			wgMultiHash.Done()
 		}(inputData)
 	}
+	fmt.Println("[ MultiHash ] before wait")
 	wgMultiHash.Wait()
 }
 
